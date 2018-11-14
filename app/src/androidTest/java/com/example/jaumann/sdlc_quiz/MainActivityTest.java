@@ -14,6 +14,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,85 +35,38 @@ public class MainActivityTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void startscreen(){
+    public void startscreenIsShown(){
         onView(withId(R.id.start_button)).check(matches(isDisplayed()));
     }
 
     @Test
-    public void mainActivityTestee() {
+    public void clickStartButtonAndShowAnswersAndQuestions() {
+        //when
         onView(withId(R.id.start_button)).check(matches(isDisplayed())).perform(click());
-      /*  ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.start_button), withText("QUIZ STARTEN"), isDisplayed()));
-        appCompatButton.perform(click()); */
 
-        ViewInteraction button = onView(
-                allOf(withId(R.id.button_answer_one),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        2),
-                                0),
-                        isDisplayed()));
-        button.check(matches(isDisplayed()));
+        //then
+        onView(withId(R.id.button_answer_one)).check(matches(isDisplayed()));
 
-        ViewInteraction button2 = onView(
-                allOf(withId(R.id.button_answer_two),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        2),
-                                1),
-                        isDisplayed()));
-        button2.check(matches(isDisplayed()));
+        onView(withId(R.id.button_answer_two)).check(matches(isDisplayed()));
 
-        ViewInteraction button3 = onView(
-                allOf(withId(R.id.button_answer_three),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        2),
-                                2),
-                        isDisplayed()));
-        button3.check(matches(isDisplayed()));
+        onView(withId(R.id.button_answer_three)).check(matches(isDisplayed()));
 
-        ViewInteraction button4 = onView(
-                allOf(withId(R.id.button_answer_four),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        2),
-                                3),
-                        isDisplayed()));
-        button4.check(matches(isDisplayed()));
+        onView(withId(R.id.button_answer_four)).check(matches(isDisplayed()));
 
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.question), withText("Hier kommt der Text der Frage hin"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        textView.check(matches(withText("Hier kommt der Text der Frage hin")));
+        onView(withId(R.id.question)).check(matches(isDisplayed()));
 
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
+    @Test
 
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
+    public void AddPointsWhenRightAnswerIsClicked(){
+        //when
+        onView(withId(R.id.start_button)).check(matches(isDisplayed())).perform(click());
+        onView(withId(R.id.button_answer_one)).check(matches(isDisplayed())).perform(click());
+        onView(withText("racetrack model")).check(matches(isDisplayed())).perform(click());
 
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
+        //then
+        Assert.assertEquals(withId(R.id.score), "Points: 1"); //id wird mit 'points: 1' verglichen, nihct der Inhalt
     }
+
 }

@@ -84,6 +84,14 @@
     </GridLayout>
 
     <Button
+        android:id="@+id/endscreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="testeeee"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="invisible"/>
+
+    <Button
         android:id="@+id/button_answer_right"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

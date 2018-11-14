@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView showQuestion, score, level;
-    Button answerOne, answerTwo, answerThree, answerFour;
+    Button answerOne, answerTwo, answerThree, answerFour, endscreen;
     int points = 0;
 
-    int actualQuestion = 1; //TODO  1
+    int actualQuestion = 0; //TODO  1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         answerTwo = findViewById(R.id.button_answer_two);
         answerThree = findViewById(R.id.button_answer_three);
         answerFour = findViewById(R.id.button_answer_four);
+        endscreen = findViewById(R.id.endscreen);
 
         Button start = (Button)findViewById(R.id.start_button);
 
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else {
                 wrongScreen(1);
             }
-            if(actualQuestion< 19){ //TODO: letzte Frage
+            if(actualQuestion< 18){ //TODO: letzte Frage
                 actualQuestion++;
            /*     try {
                     Thread.sleep(3000);
@@ -118,7 +119,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 loadQuestion();
             }
-            break;
+            else {
+                endscreen();
+            }
+             break;
+
 
             case R.id.button_answer_two:
                 if(QuestionBewerten(answerTwo.getText().toString())){
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     wrongScreen(2);
                 }
-                if(actualQuestion< 19){ //TODO : letzte Frage
+                if(actualQuestion< 18){ //TODO : letzte Frage
                     actualQuestion++;
                     /*try {
                         Thread.sleep(3000);
@@ -137,6 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     } */
                     loadQuestion();
+                }else {
+                    endscreen();
                 }
                 break;
 
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     wrongScreen(3);
                 }
-                if(actualQuestion< 19){ //TODO : letzte Frage
+                if(actualQuestion< 18){ //TODO : letzte Frage
                     actualQuestion++;
                  /*   try {
                         Thread.sleep(3000);
@@ -158,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }*/
 
                     loadQuestion();
+                }else {
+                    endscreen();
                 }
                 break;
 
@@ -170,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     wrongScreen(4);
                 }
-                if(actualQuestion< 19){ //TODO : letzte Frage
+                if(actualQuestion< 18){ //TODO : letzte Frage
                     actualQuestion++;
                   /*  try {
                         Thread.sleep(3000);
@@ -179,6 +188,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } */
 
                     loadQuestion();
+                }else {
+                    endscreen();
                 }
                 break;
 
@@ -213,6 +224,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            level.setText("Level: 1");
        }
 
+    }
+
+
+    private void endscreen() {
+        answerOne.setVisibility(View.GONE);
+        answerTwo.setVisibility(View.GONE);
+        answerThree.setVisibility(View.GONE);
+        answerFour.setVisibility(View.GONE);
+        showQuestion.setVisibility(View.GONE);
+        score.setVisibility(View.INVISIBLE);
+        level.setVisibility(View.INVISIBLE);
+
+        endscreen.setVisibility(View.VISIBLE);
+        endscreen.setText("You finished with" + score + "in" + level);
     }
 
     private void correctScreen(int answerButton){
