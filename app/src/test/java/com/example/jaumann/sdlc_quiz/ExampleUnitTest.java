@@ -1,6 +1,6 @@
 package com.example.jaumann.sdlc_quiz;
 
-
+/*
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  *
  */
 
-
+/*
 
 @RunWith(AndroidJUnit4.class)
 
@@ -48,4 +48,4 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-}
+} */
