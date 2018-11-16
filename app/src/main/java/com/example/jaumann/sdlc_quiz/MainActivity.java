@@ -1,5 +1,6 @@
 package com.example.jaumann.sdlc_quiz;
 
+import android.app.Application;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.*;
@@ -10,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.qiscus.sdk.Qiscus;
 
 import java.util.ArrayList;
 
@@ -24,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        Qiscus.init( getApplication(),"APP_ID");
         setContentView(R.layout.activity_main);
 
         showQuestion = findViewById(R.id.question);

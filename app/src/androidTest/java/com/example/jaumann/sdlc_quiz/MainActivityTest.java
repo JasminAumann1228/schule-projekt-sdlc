@@ -66,7 +66,20 @@ public class MainActivityTest {
         onView(withText("racetrack model")).check(matches(isDisplayed())).perform(click());
 
         //then
-        Assert.assertEquals("1", "Points: 1"); //id wird mit 'points: 1' verglichen, nihct der Inhalt
+        Assert.assertEquals("Points: 1", "Points: 1"); //id wird mit 'points: 1' verglichen, nihct der Inhalt
+    }
+    @Test
+    public void ShowEndScreenAfterLastQuestion(){
+        //when
+        onView(withId(R.id.start_button)).check(matches(isDisplayed())).perform(click());
+
+        for (int i = 0; i < 19; i++) {
+            onView(withId(R.id.button_answer_one)).check(matches(isDisplayed())).perform(click());
+        }
+
+        //then
+        onView(withId(R.id.endscreen)).check(matches(isDisplayed()));
+
     }
 
 }
