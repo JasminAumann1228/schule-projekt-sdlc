@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView showQuestion, score, level;
     Button answerOne, answerTwo, answerThree, answerFour, endscreen;
-    int points = 0;
+    public int points = 0;
 
     int actualQuestion = 0; //TODO  1
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         };
 
-    private void loadQuestion(){
+    public void loadQuestion(){
         Questions questionsC = new Questions();
         ArrayList<String[]> questions = questionsC.getQuestions();
         String[] question = questions.get(actualQuestion);
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private boolean QuestionBewerten(String button_text){
+    public boolean QuestionBewerten(String button_text){
         boolean question = false;
         Questions questionsC = new Questions();
         ArrayList questions = questionsC.getQuestions();
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return question;
     }
 
-    private void checkLevel(int points){
+    public void checkLevel(int points){
        if(points >= 5 && points< 10){
            level.setText("Level: 2");
        }else if(points >= 10 && points < 15){
@@ -227,17 +227,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    private void endscreen() {
+    public void endscreen() {
         answerOne.setVisibility(View.GONE);
         answerTwo.setVisibility(View.GONE);
         answerThree.setVisibility(View.GONE);
         answerFour.setVisibility(View.GONE);
         showQuestion.setVisibility(View.GONE);
+        findViewById(R.id.answer_layout).setVisibility(View.GONE);
         score.setVisibility(View.INVISIBLE);
         level.setVisibility(View.INVISIBLE);
 
         endscreen.setVisibility(View.VISIBLE);
-        endscreen.setText("You finished with" + score + "in" + level);
+        endscreen.setBackgroundColor(Color.CYAN);
+        endscreen.setText("You finished with " + points + " Points" + " in " + level.getText());
     }
 
     private void correctScreen(int answerButton){

@@ -45,6 +45,7 @@
         android:visibility="invisible" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/answer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="25dp"
@@ -83,15 +84,15 @@
 
     </GridLayout>
 
+
     <Button
         android:id="@+id/endscreen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="testeeee"
-        android:textColor="@color/colorPrimaryDark"
         android:visibility="invisible"/>
 
-    <Button
+ <!--   <Button
         android:id="@+id/button_answer_right"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -104,5 +105,5 @@
         android:layout_height="180dp"
         android:text="Die Antwort war falsch"
         android:visibility="invisible" />
-
+ -->
 </LinearLayout>

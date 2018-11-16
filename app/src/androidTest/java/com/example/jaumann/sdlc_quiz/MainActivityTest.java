@@ -66,7 +66,9 @@ public class MainActivityTest {
         onView(withText("racetrack model")).check(matches(isDisplayed())).perform(click());
 
         //then
-        Assert.assertEquals(withId(R.id.score), "Points: 1"); //id wird mit 'points: 1' verglichen, nihct der Inhalt
+        Assert.assertEquals("1", "Points: 1"); //id wird mit 'points: 1' verglichen, nihct der Inhalt
     }
 
 }
+
+
